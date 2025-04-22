@@ -10,4 +10,10 @@ module.exports = defineConfig({
       
     },
   },
+
+  env: {
+    stgNewCeo: process.env.STG_NEW_CEO_URL,
+    stgID: process.env.STG_ID,
+    stgPW: process.env.STG_PW
+  }
 });
