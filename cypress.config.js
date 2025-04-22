@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+require('dotenv').config();
 
 module.exports = defineConfig({
   viewportWidth: process.env.GITHUB_ACTIONS ? 1920 : 1920,
