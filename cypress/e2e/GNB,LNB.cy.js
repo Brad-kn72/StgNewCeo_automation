@@ -7,7 +7,9 @@ describe('GNB,LNB Test', () => {
         cy.log(site)
         cy.wait(1 * 1000)
         cy.get(':nth-child(1) > .css-7boy05 > .css-1ajjw8p').type(`${Cypress.env('stgID')}`)
-        cy.get(':nth-child(1) > .css-7boy05 > .css-1ajjw8p').type(`${Cypress.env('stgPW')}`)
+        cy.get(':nth-child(2) > .css-7boy05 > .css-1ajjw8p').type(`${Cypress.env('stgPW')}`)
+        cy.get('.css-2ptubj').click();
+
       });
 
     it('GNB', () => {
@@ -27,7 +29,7 @@ describe('GNB,LNB Test', () => {
         cy.contains('매장별 매출').click();
         cy.contains('기간별 매출').click();
         cy.contains('플랫폼별 매출').click();
-        cy.contains('메뉴그룹별 매출').click();
+        cy.contains('카테고리별 매출').click();
         cy.contains('상품별 매출').click();
         /* 매장관리 */
         cy.contains('매장관리').click();
@@ -47,11 +49,6 @@ describe('GNB,LNB Test', () => {
         cy.contains('주문관리').click();
         cy.wait(1 * 1000);
         cy.contains('주문내역').click();
-
-        /* 고객관리 */
-        // cy.contains('고객관리').click();
-        // cy.contains('쿠폰관리').click();
-        // cy.contains('리뷰관리').click();
         /* 권한관리 */
         cy.contains('권한관리').click();
         cy.wait(1 * 1000);
