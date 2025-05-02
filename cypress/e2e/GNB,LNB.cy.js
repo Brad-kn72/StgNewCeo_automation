@@ -4,8 +4,8 @@ describe("GNB,LNB Test", () => {
   beforeEach(() => {
     loginModule.login({
       Site: Cypress.env('stgNewCeo'),
-      Id: Cypress.env('stgID'),
-      Password: Cypress.env('stgPW'),
+      Id: Cypress.env('stgID1'),
+      Password: Cypress.env('stgPW1'),
     });
   });
 
