@@ -9,5 +9,5 @@ function login({ Site, Id, Password }) {
 }
   
   module.exports = {
-    login,
+    login
   };
