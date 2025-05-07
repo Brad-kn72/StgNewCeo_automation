@@ -34,7 +34,8 @@ describe("Mypage", () => {
     //대표자 변경
     cy.get("#userName").clear().type("방기남");
 
-    const revealHiddenInput = ($el) => $el[0].removeAttribute('style');  // display: none 제거
+    // display: none 제거 변수 생성
+    const revealHiddenInput = ($el) => $el[0].removeAttribute('style');
 
     //사업자등록증 변경
     cy.fixture("image/logo/0000.jpeg", "base64").then((fileContent) => {
