@@ -34,14 +34,18 @@ describe("Mypage", () => {
     //대표자 변경
     cy.get("#userName").clear().type("방기남");
 
+    const revealHiddenInput = ($el) => $el[0].removeAttribute('style');  // display: none 제거
+
     //사업자등록증 변경
-    cy.fixture("image/로고이미지/0000.png", "base64").then((fileContent) => {
-      cy.get('.css-11juqnx')
+    cy.fixture("image/logo/0000.jpeg", "base64").then((fileContent) => {
+      cy.get('input[data-testid="file-input"]')
         .should('exist')
+        .then(revealHiddenInput)
         .attachFile({
           fileContent,
-          fileName: "0000.png",
-          mimeType: "image/png"
+          fileName: "0000.jpeg",
+          mimeType: "image/jpeg",
+          encoding: "base64"
         });
     });
 
