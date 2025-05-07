@@ -15,9 +15,11 @@ module.exports = defineConfig({
       stgNewCeo: process.env.STG_NEW_CEO_URL,
       stgID1: process.env.STG_ID1,
       stgID2: process.env.STG_ID2,
+      stgID3: process.env.STG_ID3,
       stgPW1: process.env.STG_PW1,
       stgPW2: process.env.STG_PW2,
-      stgEmail: process.env.STG_EMAIL
+      stgEmail: process.env.STG_EMAIL,
+      stgTel: process.env.STG_TEL
     }
   },
 });
