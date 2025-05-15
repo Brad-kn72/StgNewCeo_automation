@@ -62,7 +62,19 @@ describe("Basicmanagement", () => {
 
     // 영업시간 설정
     cy.get(':nth-child(2) > .css-69i1ev > .css-ahx0et > .css-18uwtlr').click();
-    
+    cy.get(':nth-child(1) > .css-1l30qys > .css-dka6pf').click();
+    cy.get('.css-4hl3xb').contains('플랫폼별 설정').click();
 
+    // 요일 선택
+    cy.get('.css-ff9tpi > .css-1l30qys > .css-dka6pf').click();
+    cy.get('.css-8j1pe6 > :nth-child(2)').click();
+
+    // 시작시간
+    cy.get(':nth-child(1) > .css-yd8sa2 > :nth-child(1) > .css-1i7y4xy > :nth-child(1) > .css-dka6pf').click();
+    cy.get('.css-8j1pe6 > :nth-child(7)').contains('06시').click();
+    cy.get(':nth-child(1) > .css-yd8sa2 > :nth-child(1) > .css-1i7y4xy > :nth-child(2) > .css-dka6pf').click();
+
+    // 끝시간
+    cy.get(':nth-child(1) > .css-yd8sa2 > :nth-child(2) > .css-1i7y4xy > :nth-child(1) > .css-dka6pf').click();
   });
 });
