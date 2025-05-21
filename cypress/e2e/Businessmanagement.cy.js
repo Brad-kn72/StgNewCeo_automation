@@ -183,6 +183,7 @@ describe("영업시간 관리", () => {
   it("브레이크타임 설정", () => {
     // 브레이크타임 진입
     cy.get(":nth-child(4) > .css-69i1ev > .css-ahx0et > .css-18uwtlr").click();
+    cy.wait(1000);
 
     // 브레이크타임 사용
     cy.get('input[type="radio"][value="use"]').then(($el) => {
@@ -202,27 +203,41 @@ describe("영업시간 관리", () => {
       }
     });
 
-    cy.get(':nth-child(1) > .css-1l30qys > .css-dka6pf').click();
+    cy.get(":nth-child(1) > .css-1l30qys > .css-dka6pf").click();
     cy.get(".css-4hl3xb").click();
+    cy.wait(1000);
 
     // 매일 선택
     cy.get(".css-ff9tpi > .css-1l30qys > .css-dka6pf").click();
     cy.get(".css-4hl3xb").click();
+    cy.wait(1000);
 
     // 종료시간만 설정
     cy.get(
       ":nth-child(2) > .css-1i7y4xy > :nth-child(1) > .css-dka6pf"
     ).click();
     cy.get(".css-8j1pe6 > :nth-child(23)").click();
+    cy.wait(1000);
     cy.get(
       ":nth-child(2) > .css-1i7y4xy > :nth-child(2) > .css-dka6pf"
     ).click();
     cy.get(".css-8j1pe6 > :nth-child(60)").click();
-    cy.wait(3000);
+    cy.wait(1000);
 
     // 저장, 돌아가기
-    cy.get('.css-1xtw0ps > .css-epvm6').contains("저장").click();
-    // cy.get(".css-1buvqaz").click();
+    // cy.get(".css-1xtw0ps").click();
+
+    cy.intercept("PATCH", "https://staging-api.monkiceo.com/v1/store-hours/details?storeNo=684").as("saveStore");
+
+    cy.get(".css-1xtw0ps").click();
+
+    cy.wait("@saveStore").then(({ request, response }) => {
+      console.log("✅ PATCH 요청 바디:", request.body);
+      console.log("✅ PATCH 응답:", response.body);
+    });
+
+    // 그 후 다음 액션
+    cy.get(".css-1buvqaz").click();
   });
 
   //   it("휴무일 설정", () => {
