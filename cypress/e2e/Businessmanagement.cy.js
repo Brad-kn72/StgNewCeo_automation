@@ -57,7 +57,6 @@ describe("영업시간 관리", () => {
       cy.get('.css-y5zi5h').click();
 
       cy.get('.css-cz4akz > .css-70qvj9 > .css-16ki5qa').contains('정상');
-      cy.get('.css-1buvqaz').click();
     });
 
     it("영업시간 설정", () => {
@@ -133,7 +132,6 @@ describe("영업시간 관리", () => {
       // 저장 선택
       cy.get(".css-1xtw0ps").contains("저장").click();
       cy.wait(3000);
-      cy.get(".css-1buvqaz").click();
     });
 
     it("주방마감 설정", () => {
@@ -141,7 +139,22 @@ describe("영업시간 관리", () => {
       cy.get(':nth-child(3) > .css-69i1ev > .css-ahx0et > .css-18uwtlr').click();
 
       // 테이블오더 주방마감 사용
-      cy.get(':nth-child(2) > .css-k5rr6j > .css-yvfkka > .css-df7w99').click();
+      cy.get('input[type="radio"][value="use"]').then(($el) => {
+      const isChecked = $el[0].checked;
+
+      const toggleValue = isChecked ? "unused" : "use";
+
+      // 반대값 먼저 선택
+      cy.get(`input[type="radio"][value="${toggleValue}"]`).check({
+        force: true,
+      });
+
+      // 마지막에 항상 'use'로 다시 선택
+      if (toggleValue !== "use") {
+        cy.wait(200);
+        cy.get('input[type="radio"][value="use"]').check({ force: true });
+      }
+    });
 
       // 평일/주말 선택
       cy.get('.css-5qwq8n > .css-1l30qys > .css-dka6pf').click();
@@ -174,10 +187,9 @@ describe("영업시간 관리", () => {
       cy.get(':nth-child(3) > .css-j7qwjs > .css-yd8sa2 > .css-70qvj9 > .css-cmc34r > .css-1l30qys > .css-dka6pf > .css-1440tk4').click();
       cy.get('.css-8j1pe6 > :nth-child(11)').click();
 
-      // 저장, 돌아가기
+      // 저장
       cy.get('.css-6kaosg').contains("저장").click();
       cy.wait(2000);
-      cy.get('.css-1buvqaz').click();
     });
 
   it("브레이크타임 설정", () => {
@@ -223,9 +235,12 @@ describe("영업시간 관리", () => {
     // 저장, 돌아가기
     cy.get('.css-1xtw0ps').click();
     cy.wait(2000);
+    cy.get(".css-1buvqaz").click();
 
     // 그 후 다음 액션
-    cy.get(".css-1buvqaz").click();
+    cy.get(":nth-child(4) > .css-69i1ev > .css-ahx0et > .css-18uwtlr").click();
+    cy.wait(1000);
+    cy.get('.css-y9f9p2').click();
   });
 
     it("휴무일 설정", () => {
@@ -248,7 +263,6 @@ describe("영업시간 관리", () => {
       // 임시 휴무일 설정
       cy.get('.css-7fsnso').click();
       cy.get(':nth-child(1) > .css-9bs2fy > :nth-child(34) > .css-10oq2lb').click();
-      // cy.get(':nth-child(1) > .css-9bs2fy > :nth-child(34) > .css-10oq2lb').click();
       cy.get('.css-18uwtlr').contains('적용').click();
       cy.wait(1000);
       cy.get('.css-1bq4gr1').type('임시휴무테스트');
@@ -271,9 +285,6 @@ describe("영업시간 관리", () => {
       // 저장
       cy.get('.css-1xtw0ps').contains('저장').click();
       cy.wait(2000);
-      
-      // 돌아가기
-      cy.get('.css-1buvqaz').click();
 
     });
 });
