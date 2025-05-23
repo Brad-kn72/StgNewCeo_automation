@@ -40,6 +40,18 @@ describe("GNB,LNB Test", () => {
     cy.contains("카테고리 관리").click();
     cy.contains("메뉴판 관리").click();
     cy.contains("옵션 관리").click();
+    /* 포인트관리 */
+    cy.contains("포인트관리").click();
+    cy.wait(1 * 1000);
+    cy.contains("포인트 설정").click();
+    cy.contains("포인트 관리")
+    cy.contains("사용내역").click();
+    /* 쿠폰관리 */
+    cy.contains("쿠폰관리").click();
+    cy.wait(1 * 1000);
+    cy.contains("쿠폰 만들기").click();
+    cy.contains("쿠폰관리").click();
+    cy.contains("쿠폰 리포트").click();
     /* 주문관리 */
     cy.contains("주문관리").click();
     cy.wait(1 * 1000);
